@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour {
         zRot = Input.GetAxis("Horizontal") * Time.deltaTime;
         motor.Rotate(xRot, yRot, zRot);
 
+        motor.SpeedUp(Input.GetAxis("Vertical") * Time.deltaTime * 10);
+
         Vector3 moveCamTo = transform.position - transform.forward * motor.speed * 0.2f + transform.up * 5f;
         cam.transform.position = moveCamTo;
-        cam.transform.LookAt(transform.position + transform.forward * 30f);
+        cam.transform.LookAt(transform.position + transform.forward * 100f);
     }
 }

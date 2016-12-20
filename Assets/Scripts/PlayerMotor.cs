@@ -19,4 +19,8 @@ public class PlayerMotor : MonoBehaviour {
 
         speed = Mathf.Clamp(speed, 35, 200);
     }
+
+    public void SpeedUp (float _amount) {
+        speed += _amount;
+    }
 }
