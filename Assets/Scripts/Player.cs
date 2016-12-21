@@ -97,7 +97,7 @@ public class Player : NetworkBehaviour {
             GameManager.GetPlayer(lastDamage).kills += 1;
         }
         healthRegen += 1;
-        if (healthRegen > 300 && currentHealth < maxHealth) {
+        if (healthRegen > 1000 && currentHealth < maxHealth) {
             currentHealth += 1;
         }
 
@@ -175,6 +175,8 @@ public class Player : NetworkBehaviour {
         for (int i = 0; i < disableOnDeath.Length; i++) {
             disableOnDeath[i].enabled = wasEnabled[i];
         }
+
+        rb.velocity = Vector3.zero;
     }
 
 }
