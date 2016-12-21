@@ -54,7 +54,9 @@ public class Player : NetworkBehaviour {
 
     private bool firstSetup = true;
 
+    public GameObject deathParticle;
 
+    public GameObject explosion;
 
     public void PlayerSetup() {
 
@@ -147,6 +149,8 @@ public class Player : NetworkBehaviour {
             disableOnDeath[i].enabled = false;
         }
 
+        InvokeRepeating("Dead", 0f, 0.1f);
+
         StartCoroutine(Respawn());
 
     }
@@ -154,9 +158,12 @@ public class Player : NetworkBehaviour {
     private IEnumerator Respawn() {
         yield return new WaitForSeconds(GameManager.instance.matchSettings.respawnTime);
 
+        CancelInvoke("Dead");
+
         CmdBroadCastNewPlayerSetup();
 
         Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+        CmdSpawnExplosion(transform.position);
         transform.position = _spawnPoint.position;
         transform.rotation = _spawnPoint.rotation;
 
@@ -179,5 +186,31 @@ public class Player : NetworkBehaviour {
         rb.velocity = Vector3.zero;
     }
 
+    void Dead() {
+        CmdSpawnParticles(transform.position);
+    }
+
+    [Command]
+    void CmdSpawnParticles(Vector3 _pos) {
+        RpcSpawnParticles(_pos);
+    }
+    
+    [ClientRpc]
+    void RpcSpawnParticles(Vector3 _pos) {
+        GameObject _deathParticle = (GameObject)Instantiate(deathParticle, _pos, Quaternion.identity);
+        Destroy(_deathParticle, 5f);
+    }
+
+    [Command]
+    void CmdSpawnExplosion(Vector3 _pos) {
+        RpcSpawnExplosion(_pos);
+    }
+
+    [ClientRpc]
+    void RpcSpawnExplosion(Vector3 _pos) {
+        GameObject _explosion = (GameObject)Instantiate(explosion, _pos, Quaternion.identity);
+        _explosion.GetComponent<AudioSource>().Play();
+        Destroy(_explosion, 5f);
+    }
 }
 

@@ -15,7 +15,7 @@ public class PlayerShoot : NetworkBehaviour
 
     void FixedUpdate() {
         if (Input.GetButtonDown("Fire1")) {
-            InvokeRepeating("Shoot", 0f, 0.1f);
+            InvokeRepeating("Shoot", 0f, 0.2f);
         }
         if (Input.GetButtonUp("Fire1")) {
             CancelInvoke("Shoot");
@@ -26,7 +26,7 @@ public class PlayerShoot : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
-        CmdProjectileShot(transform.position + transform.forward * 10f, transform.rotation, transform.forward * 1000f + rb.velocity, transform.name);
+        CmdProjectileShot(transform.position + transform.forward * 20f, transform.rotation, transform.forward * 1000f + rb.velocity, transform.name);
     }
 
     [Command]

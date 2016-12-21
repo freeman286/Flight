@@ -6,12 +6,20 @@ public class ProjectileController : NetworkBehaviour {
 
     public string playerID;
 
+    public GameObject hitParticle;
+
     private int framesSinceCreated = 0;
 
     void OnCollisionEnter(Collision _collision) {
+        GameObject _hitParticle = (GameObject)Instantiate(hitParticle, _collision.contacts[0].point, Quaternion.FromToRotation(Vector3.up, _collision.contacts[0].normal));
+
+
         if ((_collision.collider.transform.root.tag == "Player")) {
             _collision.collider.transform.root.GetComponent<Player>().RpcTakeDamage(50, playerID);
         }
+
+        Destroy(gameObject);
+        Destroy(_hitParticle, 10f);
     }
 
     void FixedUpdate() {
