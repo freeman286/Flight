@@ -25,9 +25,6 @@ public class Player : NetworkBehaviour {
     [SyncVar]
     public string lastDamage;
 
-    [SyncVar]
-    private int healthRegen = 0;
-
     public Behaviour[] disableOnDeath;
     private bool[] wasEnabled;
 
@@ -56,7 +53,11 @@ public class Player : NetworkBehaviour {
 
     public GameObject deathParticle;
 
+    public GameObject damagedParticle;
+
     public GameObject explosion;
+
+    public ParticleSystem flames;
 
     public void PlayerSetup() {
 
@@ -99,10 +100,6 @@ public class Player : NetworkBehaviour {
             Die();
             GameManager.GetPlayer(lastDamage).kills += 1;
         }
-        healthRegen += 1;
-        if (healthRegen > 1000 && currentHealth < maxHealth) {
-            currentHealth += 1;
-        }
 
         timeSinceSpawned += 1;
     }
@@ -130,7 +127,9 @@ public class Player : NetworkBehaviour {
             currentHealth -= _amount;
         }
 
-        healthRegen = 0;
+        if (currentHealth >= 50) {
+            InvokeRepeating("Damaged", 0f, 0.1f);
+        }
 
         if (currentHealth <= 0 && lastDamage != transform.name) {
             Die();
@@ -150,6 +149,7 @@ public class Player : NetworkBehaviour {
             disableOnDeath[i].enabled = false;
         }
 
+        CancelInvoke("Damaged");
         InvokeRepeating("Dead", 0f, 0.1f);
 
         StartCoroutine(Respawn());
@@ -185,21 +185,39 @@ public class Player : NetworkBehaviour {
         }
 
         rb.velocity = Vector3.zero;
+
+        flames.Stop();
     }
 
     void Dead() {
+        flames.Play();
+        CmdSpawnDeathParticles(transform.position);
+    }
+
+    void Damaged() {
         CmdSpawnParticles(transform.position);
+    }
+
+    [Command]
+    void CmdSpawnDeathParticles(Vector3 _pos) {
+        RpcSpawnDeathParticles(_pos);
+    }
+    
+    [ClientRpc]
+    void RpcSpawnDeathParticles(Vector3 _pos) {
+        GameObject _deathParticle = (GameObject)Instantiate(deathParticle, _pos, Quaternion.identity);
+        Destroy(_deathParticle, 5f);
     }
 
     [Command]
     void CmdSpawnParticles(Vector3 _pos) {
         RpcSpawnParticles(_pos);
     }
-    
+
     [ClientRpc]
     void RpcSpawnParticles(Vector3 _pos) {
-        GameObject _deathParticle = (GameObject)Instantiate(deathParticle, _pos, Quaternion.identity);
-        Destroy(_deathParticle, 5f);
+        GameObject _damagedParticle = (GameObject)Instantiate(damagedParticle, _pos, Quaternion.identity);
+        Destroy(_damagedParticle, 5f);
     }
 
     [Command]
