@@ -94,7 +94,8 @@ public class Player : NetworkBehaviour {
     }
 
     void Update() {
-        if (rb.position.y < -10 && !isDead) {
+        int _bound = GameManager.instance.matchSettings.bounds;
+        if ((rb.position.y < -10 || rb.position.x > _bound || rb.position.x < -_bound || rb.position.z > _bound || rb.position.z < -_bound) && !isDead) {
             Die();
             GameManager.GetPlayer(lastDamage).kills += 1;
         }
