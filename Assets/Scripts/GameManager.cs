@@ -50,6 +50,17 @@ public class GameManager : NetworkBehaviour {
         return players.Keys.Count;
     }
 
+    void OnGUI() {
+        GUILayout.BeginArea(new Rect(10, 120, Screen.width / 4, Screen.height - 200));
+        GUILayout.BeginVertical();
+
+        GUILayout.Label("My IP: " + Network.player.ipAddress);
+
+        GUILayout.Label("Frames per second:");
+        GUILayout.Label((1.0f / Time.deltaTime).ToString());
+        GUILayout.EndVertical();
+        GUILayout.EndArea();
+    }
 
 }
 
