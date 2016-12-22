@@ -163,7 +163,7 @@ public class Player : NetworkBehaviour {
         CmdBroadCastNewPlayerSetup();
 
         Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-        CmdSpawnExplosion(transform.position);
+        RpcSpawnExplosion(transform.position);
         transform.position = _spawnPoint.position;
         transform.rotation = _spawnPoint.rotation;
 
