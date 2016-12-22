@@ -9,17 +9,23 @@ public class PlayerShoot : NetworkBehaviour
     public ParticleSystem muzzle;
     public GameObject shootSound;
 
+    public float fireRate;
+
+    private float lastShot;
+
     // Use this for initialization
     void Start() {
     }
 
     void FixedUpdate() {
-        if (Input.GetButtonDown("Fire1")) {
-            InvokeRepeating("Shoot", 0f, 0.2f);
+        if (Input.GetButtonDown("Fire1") && lastShot > 30 * fireRate) {
+            InvokeRepeating("Shoot", 0f, fireRate);
         }
         if (Input.GetButtonUp("Fire1")) {
             CancelInvoke("Shoot");
+            lastShot = 0;
         }
+        lastShot += 1;
     }
 
     void Shoot() {
