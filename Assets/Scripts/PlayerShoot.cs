@@ -11,21 +11,21 @@ public class PlayerShoot : NetworkBehaviour
 
     public float fireRate;
 
-    private float lastShot;
+    public float lastShot = 0;
 
     // Use this for initialization
     void Start() {
     }
 
-    void FixedUpdate() {
-        if (Input.GetButtonDown("Fire1") && lastShot > 30 * fireRate) {
+    void Update() {
+        if (Input.GetButtonDown("Fire1") && lastShot > fireRate) {
             InvokeRepeating("Shoot", 0f, fireRate);
         }
         if (Input.GetButtonUp("Fire1")) {
             CancelInvoke("Shoot");
             lastShot = 0;
         }
-        lastShot += 1;
+        lastShot += Time.deltaTime;
     }
 
     void Shoot() {
