@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
     private float yRot;
     private float zRot;
 
+    private bool inverted = false;
+
     private int framesWithCursor;
 
     // Use this for initialization
@@ -22,6 +24,11 @@ public class PlayerController : MonoBehaviour {
         xRot = -Input.GetAxis("Mouse Y") * Time.deltaTime;
         yRot = Input.GetAxis("Mouse X") * Time.deltaTime;
         zRot = Input.GetAxis("Horizontal") * Time.deltaTime;
+
+        if (inverted) {
+            xRot *= -1;
+        }
+
         motor.Rotate(xRot, yRot, zRot);
 
         motor.SpeedUp(Input.GetAxis("Vertical") * Time.deltaTime * 10);
@@ -43,6 +50,11 @@ public class PlayerController : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             framesWithCursor = 0;
         }
+
+        if (Input.GetKeyDown("f")) {
+            inverted = !inverted;
+        }
+
         framesWithCursor += 1;
     }
 }
