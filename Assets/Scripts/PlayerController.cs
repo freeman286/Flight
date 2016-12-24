@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 moveCamTo = transform.position - transform.forward * motor.speed * 0.2f + transform.up * 5f;
         cam.transform.position = moveCamTo;
         cam.transform.LookAt(transform.position + transform.forward * 100f);
+        cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, cam.transform.rotation.y, Mathf.Lerp(0, zRot * 200f, 0.1f));
 
         //Pressing Esc
         if (Input.GetKeyDown(KeyCode.Escape))
