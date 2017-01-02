@@ -184,6 +184,8 @@ public class Player : NetworkBehaviour {
             disableOnDeath[i].enabled = wasEnabled[i];
         }
 
+        RepairRecursively(transform);
+
         rb.velocity = Vector3.zero;
 
         flames.Stop();
@@ -230,6 +232,18 @@ public class Player : NetworkBehaviour {
         GameObject _explosion = (GameObject)Instantiate(explosion, _pos, Quaternion.identity);
         _explosion.GetComponent<AudioSource>().Play();
         Destroy(_explosion, 5f);
+    }
+
+    public void RepairRecursively(Transform _obj) {
+        foreach (Transform child in _obj) {
+            RepairRecursively(child.transform);
+            if (child.GetComponent<MeshRenderer>() != null) {
+                child.GetComponent<MeshRenderer>().enabled = true;
+            }
+            if (child.GetComponent<BoxCollider>() != null) {
+                child.GetComponent<BoxCollider>().enabled = true;
+            }
+        }
     }
 }
 
