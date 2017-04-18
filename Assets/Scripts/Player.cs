@@ -152,6 +152,8 @@ public class Player : NetworkBehaviour {
         CancelInvoke("Damaged");
         InvokeRepeating("Dead", 0f, 0.1f);
 
+        rb.isKinematic = false;
+
         StartCoroutine(Respawn());
 
     }
@@ -186,6 +188,7 @@ public class Player : NetworkBehaviour {
 
         RepairRecursively(transform);
 
+        rb.isKinematic = true;
         rb.velocity = Vector3.zero;
 
         flames.Stop();

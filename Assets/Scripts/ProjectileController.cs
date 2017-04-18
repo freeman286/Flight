@@ -15,7 +15,7 @@ public class ProjectileController : NetworkBehaviour {
 
 
         if ((_collision.collider.transform.root.tag == "Player")) {
-            _collision.collider.transform.root.GetComponent<Player>().RpcTakeDamage(50, playerID);
+            _collision.collider.transform.root.GetComponent<Player>().RpcTakeDamage(30, playerID);
             if (_collision.collider.GetComponent<Fracturable>() != null) {
                 _collision.collider.GetComponent<Fracturable>().Fracture();
             }
