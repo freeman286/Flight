@@ -14,13 +14,13 @@ public class PlayerController : MonoBehaviour {
 
     private int framesWithCursor;
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private Vector3 originPosition;
+    private Quaternion originRotation;
+    private Vector3 shakePosition;
+    private Quaternion shakeRotation;
+
+    void Update () {
+
         xRot = -Input.GetAxis("Mouse Y") * Time.deltaTime;
         yRot = Input.GetAxis("Mouse X") * Time.deltaTime;
         zRot = Input.GetAxis("Horizontal") * Time.deltaTime;
@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour {
         cam.transform.position = moveCamTo;
         cam.transform.LookAt(transform.position + transform.forward * 100f);
         cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, cam.transform.rotation.y, Mathf.Lerp(0, zRot * 200f, 0.1f));
+
+        cam.gameObject.GetComponent<CameraShake>().ShakeCamera(motor.speed * 1.5f, 0.001f);
 
         //Pressing Esc
         if (Input.GetKeyDown(KeyCode.Escape))
