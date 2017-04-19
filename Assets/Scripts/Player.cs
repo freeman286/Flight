@@ -122,6 +122,7 @@ public class Player : NetworkBehaviour {
                 cam.transform.position,
                 new Quaternion(0, 0, 0, 0)
             );
+            _hitSound.transform.SetParent(transform);
             _hitSound.Play();
             Destroy(_hitSound.gameObject, 1f);
         }
@@ -259,6 +260,14 @@ public class Player : NetworkBehaviour {
             }
             if (child.GetComponent<Fracturable>() != null) {
                 child.GetComponent<Fracturable>().fractured = false;
+            }
+        }
+    }
+
+    public void OnCollisionEnter(Collision _collision) {
+        foreach (ContactPoint _contact in _collision.contacts){
+            if (_contact.thisCollider.GetComponent<Fracturable>() != null) {
+                _contact.thisCollider.GetComponent<Fracturable>().Fracture();
             }
         }
     }

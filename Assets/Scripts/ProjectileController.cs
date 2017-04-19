@@ -14,11 +14,8 @@ public class ProjectileController : NetworkBehaviour {
         GameObject _hitParticle = (GameObject)Instantiate(hitParticle, _collision.contacts[0].point, Quaternion.FromToRotation(Vector3.up, _collision.contacts[0].normal));
 
 
-        if ((_collision.collider.transform.root.tag == "Player")) {
+        if (_collision.collider.transform.root.tag == "Player") {
             _collision.collider.transform.root.GetComponent<Player>().RpcTakeDamage(30, playerID);
-            if (_collision.collider.GetComponent<Fracturable>() != null) {
-                _collision.collider.GetComponent<Fracturable>().Fracture();
-            }
         }
 
         Destroy(gameObject);

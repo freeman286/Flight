@@ -18,6 +18,9 @@ public class Fracturable : MonoBehaviour {
     }
 
     public void Fracture() {
+        if (fractured)
+            return;
+
         fractured = true;
         mesh.enabled = false;
         box.enabled = false;
