@@ -10,12 +10,15 @@ public class Fracturable : MonoBehaviour {
     private MeshRenderer mesh;
     private BoxCollider box;
 
+    public bool fractured = false;
+
     void Start() {
         mesh = GetComponent<MeshRenderer>();
         box = GetComponent<BoxCollider>();
     }
 
     public void Fracture() {
+        fractured = true;
         mesh.enabled = false;
         box.enabled = false;
         GameObject _shards = (GameObject)Instantiate(shards, transform.position, transform.rotation);

@@ -169,6 +169,17 @@
     <Compile Include="Assets\Standard Assets\Utility\WaypointProgressTracker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\KvantSpray-master\Assets\ColorSuite\Shader\ColorSuite.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\DeferredAO\Shader\DeferredAO.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kino\Bloom\Shader\Bloom.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kino\Vignette\Shader\Vignette.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Common.cginc" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Debug.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Kernel.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Opaque.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\SimplexNoiseGrad3D.cginc" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Unlit.shader" />
+    <None Include="Assets\KvantSpray-master\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />

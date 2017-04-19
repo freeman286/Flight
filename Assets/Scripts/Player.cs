@@ -28,6 +28,8 @@ public class Player : NetworkBehaviour {
     public Behaviour[] disableOnDeath;
     private bool[] wasEnabled;
 
+    public Behaviour[] enableOnDeath;
+
     public Transform trans;
 
     public Rigidbody rb;
@@ -97,6 +99,7 @@ public class Player : NetworkBehaviour {
     void Update() {
         int _bound = GameManager.instance.matchSettings.bounds;
         if ((rb.position.y < -10 || rb.position.x > _bound || rb.position.x < -_bound || rb.position.z > _bound || rb.position.z < -_bound) && !isDead) {
+            currentHealth = 0;
             Die();
             GameManager.GetPlayer(lastDamage).kills += 1;
         }
@@ -149,6 +152,10 @@ public class Player : NetworkBehaviour {
             disableOnDeath[i].enabled = false;
         }
 
+        for (int i = 0; i < enableOnDeath.Length; i++) {
+            enableOnDeath[i].enabled = true;
+        }
+
         CancelInvoke("Damaged");
         InvokeRepeating("Dead", 0f, 0.1f);
 
@@ -184,6 +191,10 @@ public class Player : NetworkBehaviour {
 
         for (int i = 0; i < disableOnDeath.Length; i++) {
             disableOnDeath[i].enabled = wasEnabled[i];
+        }
+
+        for (int i = 0; i < enableOnDeath.Length; i++) {
+            enableOnDeath[i].enabled = false;
         }
 
         RepairRecursively(transform);
@@ -245,6 +256,9 @@ public class Player : NetworkBehaviour {
             }
             if (child.GetComponent<BoxCollider>() != null) {
                 child.GetComponent<BoxCollider>().enabled = true;
+            }
+            if (child.GetComponent<Fracturable>() != null) {
+                child.GetComponent<Fracturable>().fractured = false;
             }
         }
     }

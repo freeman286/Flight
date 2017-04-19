@@ -160,8 +160,27 @@
     <Compile Include="Assets\Editor\ImageEffects\SunShaftsEditor.cs" />
     <Compile Include="Assets\Editor\ImageEffects\TonemappingEditor.cs" />
     <Compile Include="Assets\Editor\ImageEffects\VignetteAndChromaticAberrationEditor.cs" />
+    <Compile Include="Assets\KvantSpray-master\Assets\ColorSuite\Editor\ColorSuiteEditor.cs" />
+    <Compile Include="Assets\KvantSpray-master\Assets\DeferredAO\Editor\DeferredAOEditor.cs" />
+    <Compile Include="Assets\KvantSpray-master\Assets\Editor\PackageTool.cs" />
+    <Compile Include="Assets\KvantSpray-master\Assets\Kino\Bloom\Editor\BloomEditor.cs" />
+    <Compile Include="Assets\KvantSpray-master\Assets\Kino\Vignette\Editor\VignetteEditor.cs" />
+    <Compile Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Editor\SprayEditor.cs" />
+    <Compile Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Editor\SpraySurfaceMaterialEditor.cs" />
+    <Compile Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Editor\SprayUnlitMaterialEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\KvantSpray-master\Assets\ColorSuite\Shader\ColorSuite.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\DeferredAO\Shader\DeferredAO.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kino\Bloom\Shader\Bloom.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kino\Vignette\Shader\Vignette.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Common.cginc" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Debug.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Kernel.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Opaque.shader" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\SimplexNoiseGrad3D.cginc" />
+    <None Include="Assets\KvantSpray-master\Assets\Kvant\Spray\Shaders\Unlit.shader" />
+    <None Include="Assets\KvantSpray-master\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
