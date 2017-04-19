@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
         cam.transform.LookAt(transform.position + transform.forward * 100f);
         cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, cam.transform.rotation.y, Mathf.Lerp(0, zRot * 200f, 0.1f));
 
-        cam.gameObject.GetComponent<CameraShake>().ShakeCamera(Mathf.Pow(motor.speed, 4) * 0.00001f, 0.001f);
+        cam.gameObject.GetComponent<CameraShake>().ShakeCamera(Mathf.Pow(motor.speed * (1f / Mathf.Pow(motor.damage, 5)), 4) * 0.00001f, 0.001f * (1f / Mathf.Pow(motor.damage, 3)));
 
         //Pressing Esc
         if (Input.GetKeyDown(KeyCode.Escape))

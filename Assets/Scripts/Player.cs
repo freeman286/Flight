@@ -40,6 +40,8 @@ public class Player : NetworkBehaviour {
 
     public PlayerController controller;
 
+    public PlayerMotor motor;
+
     public GameObject hit;
 
     [SyncVar]
@@ -199,6 +201,9 @@ public class Player : NetworkBehaviour {
         }
 
         RepairRecursively(transform);
+
+        motor.damage = 1f;
+        motor.damageSkew = Quaternion.identity;
 
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
