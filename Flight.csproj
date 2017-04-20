@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\PlayerSetup.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\ProjectileController.cs" />
+    <Compile Include="Assets\Scripts\SpawnClouds.cs" />
     <Compile Include="Assets\Scripts\TrailManager.cs" />
   </ItemGroup>
   <ItemGroup>
