@@ -203,7 +203,7 @@ public class Player : NetworkBehaviour {
         RepairRecursively(transform);
 
         motor.damage = 1f;
-        motor.damageSkew = Quaternion.identity;
+        motor.damageSkew = Vector3.zero;
 
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;

@@ -32,7 +32,7 @@ public class Fracturable : MonoBehaviour {
         _shards.transform.localScale = transform.localScale;
 
         motor.damage *= 0.75f;
-        motor.damageSkew = new Quaternion(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
+        motor.damageSkew = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
     }
 
 }
