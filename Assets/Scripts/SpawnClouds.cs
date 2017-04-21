@@ -25,6 +25,7 @@ public class SpawnClouds : MonoBehaviour {
             clump = Random.Range(0, 64);
             for (int i = 0; i < clump; i++) {
                 GameObject _cloud = (GameObject)Instantiate(cloud, new Vector3(x, y, z), Quaternion.identity);
+                _cloud.transform.SetParent(transform);
                 x += Random.Range(-64, 64);
                 y += Random.Range(-64, 64);
                 z += Random.Range(-64, 64);
