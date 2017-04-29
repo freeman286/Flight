@@ -13,9 +13,15 @@ public class TrailManager : MonoBehaviour {
 
     void Update () {
 		if (player.currentHealth > 0 && !fracture.fractured) {
-            trail.time = Mathf.Lerp(trail.time, trailTime, 0.9f);
+            trail.time = Mathf.Lerp(trail.time, trailTime, 0.5f);
         } else {
-            trail.time = Mathf.Lerp(trail.time, 0f, 0.1f);
+            trail.time = Mathf.Lerp(trail.time, 0f, 0.5f);
         }
+        if (trail.time < 0.1f) {
+            trail.enabled = false;
+        } else {
+            trail.enabled = true;
+        }
+        Debug.Log(trail.time);
 	}
 }
