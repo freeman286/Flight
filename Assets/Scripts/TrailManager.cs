@@ -22,6 +22,5 @@ public class TrailManager : MonoBehaviour {
         } else {
             trail.enabled = true;
         }
-        Debug.Log(trail.time);
 	}
 }
